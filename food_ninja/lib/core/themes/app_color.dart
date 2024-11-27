@@ -12,4 +12,9 @@ class AppColor {
   // dark mode
   static const darkBackGroundColor1 = Color(0xFF0D0D0D);
   static const darkBackgroundColor2 = Color(0xFF000000);
+
+  // container backGround
+  static const darkCont = Color(0xFF3B3B3B);
+
+  static const lightCont = Color(0xFFFFFFFF);
 }

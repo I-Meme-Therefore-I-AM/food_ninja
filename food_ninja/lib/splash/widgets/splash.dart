@@ -7,12 +7,14 @@ class Splash extends StatelessWidget {
   final String title;
   final String subTitle;
   final String buttonName;
+  final VoidCallback onPressed;
   const Splash({
     super.key,
     required this.isDark,
     required this.title,
     required this.buttonName,
     required this.subTitle,
+    required this.onPressed,
   });
 
   @override
@@ -36,9 +38,14 @@ class Splash extends StatelessWidget {
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
           ),
           SizedBox(
-            height: 70,
+            height: 60,
           ),
-          Button(width: 157, height: 57, text: buttonName),
+          Button(
+            width: 157,
+            height: 57,
+            text: buttonName,
+            onPressed: onPressed,
+          ),
         ],
       ),
     );

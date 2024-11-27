@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ninja/auth/pages/log_in_page.dart';
 import 'package:food_ninja/core/themes/app_themes.dart';
 import 'package:food_ninja/core/themes/bloc/theme_bloc.dart';
 import 'package:food_ninja/splash/squash_page/on_boarding_page.dart';
+import 'package:food_ninja/splash/squash_page/sub_welcome_page.dart';
 
 void main() {
   runApp(MultiBlocProvider(
@@ -27,6 +29,10 @@ class MyApp extends StatelessWidget {
           theme: AppThemes.lightMode,
           themeMode: state,
           darkTheme: AppThemes.darkMode,
+          routes: {
+            "/welcome_next": (context) => SubWelcomePage(),
+            "/log_in": (context) => LogInPage(),
+          },
         );
       },
     );

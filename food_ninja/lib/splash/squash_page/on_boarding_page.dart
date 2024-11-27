@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
@@ -17,6 +18,7 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   void initState() {
+    _dismissKeyBoard();
     redirect();
     super.initState();
   }
@@ -41,7 +43,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 ),
                 GradientText(
                   size: 40,
-                  text: "Food NinJa",
+                  text: "FoodNinja",
                   fontWeight: FontWeight.w400,
                   fontStyle: "Viga",
                 ),
@@ -61,5 +63,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     await Future.delayed(Duration(seconds: 5));
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => WelcomePage()));
+  }
+
+  Future<void> _dismissKeyBoard() async {
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    });
   }
 }

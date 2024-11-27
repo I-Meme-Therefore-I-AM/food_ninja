@@ -4,11 +4,12 @@ class Button extends StatelessWidget {
   final double width;
   final double height;
   final String text;
+  final VoidCallback onPressed;
   const Button(
       {super.key,
       required this.width,
       required this.height,
-      required this.text});
+      required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class Button extends StatelessWidget {
               end: Alignment.topCenter),
           borderRadius: BorderRadius.circular(15)),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           text,
         ),
