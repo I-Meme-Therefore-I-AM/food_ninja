@@ -12,4 +12,10 @@ class AppVectors {
   // social icon
   static const String google = '$basePath/google-icon.$ext';
   static const String fb = '$basePath/facebook.$ext';
+
+  // registration icon
+  static const String message = '$basePath/Message.$ext';
+  static const String profile = '$basePath/Profile.$ext';
+  static const String lock = '$basePath/Lock.$ext';
+  // static const String profile = '$basePath/Profile.$ext';
 }

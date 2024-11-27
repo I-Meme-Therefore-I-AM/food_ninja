@@ -134,9 +134,22 @@ class _LogInPageState extends State<LogInPage> {
                     text: "Forgot Your Password?",
                     fontWeight: FontWeight.w500),
 
+                SizedBox(
+                  height: 15,
+                ),
+
+                // signUp
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/sign_up");
+                  },
+                  child: GradientText(
+                      size: 14, text: "Sign up", fontWeight: FontWeight.w500),
+                ),
+
                 // todo implemente a login button routes
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Button(width: 141, height: 57, text: "Login", onPressed: () {})
               ],
@@ -148,10 +161,10 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   Widget _emailField() {
-    return AuthField(text: _emailText, hintText: "email");
+    return AuthField(text: _emailText, hintText: "Email");
   }
 
   Widget _passwordField() {
-    return AuthField(text: _passwordText, hintText: "password");
+    return AuthField(text: _passwordText, hintText: "Password");
   }
 }

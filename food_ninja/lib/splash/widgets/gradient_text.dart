@@ -17,8 +17,8 @@ class GradientText extends StatelessWidget {
   Widget build(BuildContext context) {
     final gradient = LinearGradient(
         colors: [AppColor.primaryGradient1, AppColor.primaryGradient2],
-        end: Alignment.topRight,
-        begin: Alignment.topLeft);
+        end: Alignment.topCenter,
+        begin: Alignment.bottomCenter);
     return ShaderMask(
       shaderCallback: (bonds) => gradient.createShader(
         Rect.fromLTWH(0, 0, bonds.height, bonds.width),
@@ -28,7 +28,8 @@ class GradientText extends StatelessWidget {
         style: TextStyle(
             fontSize: size,
             fontWeight: fontWeight,
-            fontFamily: fontStyle ?? "BentonSans"),
+            fontFamily: fontStyle ?? "BentonSans",
+            color: Colors.white),
       ),
     );
   }

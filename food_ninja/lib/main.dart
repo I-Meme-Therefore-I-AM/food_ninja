@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_ninja/auth/pages/log_in_page.dart';
+import 'package:food_ninja/auth/pages/sign_up_page.dart';
 import 'package:food_ninja/core/themes/app_themes.dart';
 import 'package:food_ninja/core/themes/bloc/theme_bloc.dart';
 import 'package:food_ninja/splash/squash_page/on_boarding_page.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           routes: {
             "/welcome_next": (context) => SubWelcomePage(),
             "/log_in": (context) => LogInPage(),
+            "/sign_up": (context) => SignUpPage(),
           },
         );
       },

@@ -17,4 +17,5 @@ class AppColor {
   static const darkCont = Color(0xFF3B3B3B);
 
   static const lightCont = Color(0xFFFFFFFF);
+  static const borderColor = Color(0xFFF4F4F4);
 }

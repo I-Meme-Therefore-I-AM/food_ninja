@@ -5,7 +5,7 @@ class AppThemes {
   static final lightMode = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColor.whiteBackgroundColor1,
-    primaryColor: Color(0xFF53E88B),
+    // primaryColor: Color(0xFF53E88B),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.transparent,
@@ -21,23 +21,18 @@ class AppThemes {
     //   backgroundColor:
     // ))
     inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFF3B3B3B)),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: AppColor.lightCont,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColor.lightCont),
-        ),
-        filled: true,
-        fillColor: AppColor.lightCont,
-        hoverColor: AppColor.lightCont),
+      contentPadding: EdgeInsets.all(20),
+      hintStyle: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF3B3B3B)),
+      enabledBorder: InputBorder.none,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(color: AppColor.lightCont),
+      ),
+      // filled: true,
+      // fillColor: AppColor.lightCont,
+      // hoverColor: AppColor.lightCont,
+    ),
   );
 
   static final darkMode = ThemeData(
@@ -53,22 +48,22 @@ class AppThemes {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: AppColor.darkCont),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(
-            color: AppColor.darkCont,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColor.darkCont, width: 1),
-        ),
-        filled: true,
-        fillColor: AppColor.darkCont,
-        hoverColor: AppColor.darkCont),
+      contentPadding: EdgeInsets.all(20),
+      hintStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: AppColor.lightCont.withOpacity(0.3)),
+      enabledBorder: InputBorder.none,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(
+            color: AppColor.lightCont.withOpacity(0.1),
+            style: BorderStyle.none,
+            width: 0),
+      ),
+      // filled: true,
+      // fillColor: AppColor.lightCont.withOpacity(0.1),
+      // hoverColor: AppColor.lightCont.withOpacity(0.1),
+    ),
   );
 }

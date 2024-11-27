@@ -9,7 +9,8 @@ class Button extends StatelessWidget {
       {super.key,
       required this.width,
       required this.height,
-      required this.text, required this.onPressed});
+      required this.text,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
