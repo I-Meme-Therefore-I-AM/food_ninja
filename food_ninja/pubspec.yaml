@@ -38,6 +38,12 @@ dependencies:
   flutter_svg: ^2.0.15
   flutter_bloc: ^8.1.6
   bloc: ^8.1.4
+  supabase_flutter: ^2.8.1
+  flutter_dotenv: ^5.2.1
+  fpdart: ^1.1.1
+  flutter_getit: ^3.0.1
+  get_it: ^7.7.0
+  email_validator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +72,7 @@ flutter:
     - assets/images/
     - assets/vectors/
     - assets/fonts/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,10 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:food_ninja/auth/widgets/auth_button.dart';
 import 'package:food_ninja/auth/widgets/auth_field.dart';
 import 'package:food_ninja/core/images/app_images.dart';
 import 'package:food_ninja/core/images/app_vectors.dart';
 import 'package:food_ninja/core/themes/app_color.dart';
-import 'package:food_ninja/core/widgets/button.dart';
 import 'package:food_ninja/splash/widgets/gradient_text.dart';
 
 class LogInPage extends StatefulWidget {
@@ -17,6 +18,13 @@ class LogInPage extends StatefulWidget {
 class _LogInPageState extends State<LogInPage> {
   final TextEditingController _emailText = TextEditingController();
   final TextEditingController _passwordText = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailText.dispose();
+    _passwordText.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +159,7 @@ class _LogInPageState extends State<LogInPage> {
                 SizedBox(
                   height: 30,
                 ),
-                Button(width: 141, height: 57, text: "Login", onPressed: () {})
+                AuthButton(width: 141, height: 57, text: "Login", onPressed: () {})
               ],
             ),
           ),
@@ -161,10 +169,21 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   Widget _emailField() {
-    return AuthField(text: _emailText, hintText: "Email");
+    return AuthField(
+      text: _emailText,
+      hintText: "Email",
+      validator: (email) => EmailValidator.validate(email!)
+          ? "Enter a valid email address"
+          : null,
+    );
   }
 
   Widget _passwordField() {
-    return AuthField(text: _passwordText, hintText: "Password");
+    return AuthField(
+      text: _passwordText,
+      hintText: "Password",
+      validator: (password) => null,
+      obscureText: true,
+    );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final double width;
   final double height;
   final String text;
   final VoidCallback onPressed;
-  const Button(
+  const AuthButton(
       {super.key,
       required this.width,
       required this.height,
@@ -24,7 +24,7 @@ class Button extends StatelessWidget {
               end: Alignment.topCenter),
           borderRadius: BorderRadius.circular(15)),
       child: ElevatedButton(
-        onPressed: () => onPressed(),
+        onPressed: onPressed,
         child: Text(
           text,
         ),

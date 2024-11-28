@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:food_ninja/core/themes/app_color.dart';
 
-class AuthField extends StatelessWidget {
+class AuthField extends StatefulWidget {
   final TextEditingController text;
   final String hintText;
   final Widget? child;
-  const AuthField({
+  bool obscureText;
+  final Function(String?)? validator;
+  AuthField({
     super.key,
     required this.text,
     required this.hintText,
+    required this.validator,
+    this.obscureText = false,
     this.child,
   });
+
+  @override
+  State<AuthField> createState() => _AuthFieldState();
+}
+
+class _AuthFieldState extends State<AuthField> {
+  late bool isObscure;
+  @override
+  void initState() {
+    isObscure = widget.obscureText;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final contColor = Theme.of(context).brightness == Brightness.light
         ? AppColor.lightCont
         : AppColor.borderColor.withOpacity(0.1);
-    final widget = child ?? Text("");
+    final obj = widget.child ?? Text("");
+
     return Container(
       decoration: BoxDecoration(
           color: contColor,
@@ -34,19 +51,42 @@ class AuthField extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: widget,
+            child: obj,
           ),
           Expanded(
             child: Padding(
-              padding: widget != Text("")
+              padding: obj != Text("")
                   ? EdgeInsets.only(left: 10)
                   : EdgeInsets.only(left: 0),
               child: TextFormField(
-                autocorrect: true,
-                controller: text,
-                decoration: InputDecoration(hintText: hintText),
+                obscureText: isObscure,
+                autocorrect: !widget.obscureText,
+                keyboardType: !widget.obscureText
+                    ? TextInputType.emailAddress
+                    : TextInputType.text,
+                controller: widget.text,
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  suffixIcon: widget.obscureText
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              // widget.obscureText = !isObscure;
+                              isObscure = !isObscure;
+                            });
+                          },
+                          icon: isObscure == false
+                              ? Icon(Icons.visibility)
+                              : Icon(Icons.visibility_off),
+                          color: Colors.green.withOpacity(0.3),
+                        )
+                      : null,
+                ),
                 cursorColor: Colors.black45,
                 style: TextStyle(fontSize: 14),
+                autofillHints: [AutofillHints.email, AutofillHints.username],
+                validator: (value) =>
+                    widget.validator!(widget.text.text.trim()),
               ),
             ),
           ),

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_ninja/auth/bloc/auth_bloc_bloc.dart';
 import 'package:food_ninja/auth/pages/log_in_page.dart';
 import 'package:food_ninja/auth/pages/sign_up_page.dart';
 import 'package:food_ninja/core/themes/app_themes.dart';
 import 'package:food_ninja/core/themes/bloc/theme_bloc.dart';
+import 'package:food_ninja/service_locator.dart';
 import 'package:food_ninja/splash/squash_page/on_boarding_page.dart';
 import 'package:food_ninja/splash/squash_page/sub_welcome_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependecies();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => ThemeBloc()),
+      BlocProvider(create: (_) => sl<AuthBlocBloc>())
     ],
     child: const MyApp(),
   ));
