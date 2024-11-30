@@ -12,7 +12,9 @@ class UserSignUp implements UseCases<UserSignUpEntityResp, UserSignUpEntity> {
     required this.authRepository,
   });
   @override
-  Future<Either<Failure, UserSignUpEntityResp>> call(param) {
-    return authRepository.signUp(user: param);
+  Future<Either<Failure, UserSignUpEntityResp>> call(param) async {
+    final res = await authRepository.signUp(user: param);
+    print(res);
+    return res;
   }
 }

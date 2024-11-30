@@ -10,12 +10,12 @@ final class AuthBlocInitial extends AuthBlocState {}
 final class AuthLoading extends AuthBlocState {}
 
 final class AuthSucess extends AuthBlocState {
-  final UserSignUpEntityResp uId;
+  final String uId;
 
   const AuthSucess(this.uId);
 }
 
 final class AuthFailure extends AuthBlocState {
-  final Failure message;
+  final String message;
   const AuthFailure(this.message);
 }

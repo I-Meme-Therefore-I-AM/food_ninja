@@ -18,4 +18,5 @@ class AppVectors {
   static const String profile = '$basePath/Profile.$ext';
   static const String lock = '$basePath/Lock.$ext';
   // static const String profile = '$basePath/Profile.$ext';
+  static const String bg_2 = '$basePath/bg_2.$ext';
 }

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_ninja/auth/entities/user_entity.dart';
 
 import 'package:food_ninja/auth/usescases/user_sign_up.dart';
-import 'package:food_ninja/core/error/failure.dart';
 
 part 'auth_bloc_event.dart';
 part 'auth_bloc_state.dart';
@@ -16,16 +15,14 @@ class AuthBlocBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   })  : _userSignUp = userSignUp,
         super(AuthBlocInitial()) {
     on<AuthSignUp>((event, emit) async {
+      emit(AuthLoading());
       final resp = await _userSignUp(UserSignUpEntity(
           email: event.email,
           username: event.username,
           password: event.password));
 
-      resp.fold((failure) {
-        AuthFailure(Failure(failure.message));
-      }, (uId) {
-        AuthSucess(UserSignUpEntityResp(id: uId.id));
-      });
+      resp.fold((fail) => emit(AuthFailure(fail.message)),
+          (user) => emit(AuthSucess(user.id)));
     });
   }
 }

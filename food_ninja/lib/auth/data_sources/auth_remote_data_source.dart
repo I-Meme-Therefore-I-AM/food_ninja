@@ -13,6 +13,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SupabaseClient supabaseClient;
 
   AuthRemoteDataSourceImpl({required this.supabaseClient});
+  // todo work on user login
   @override
   Future<UserSignUpEntity> logIn(
       {required email, required password, required username}) {
@@ -28,16 +29,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           password: user.password,
           data: {'username': user.username});
 
-      print(resp);
       if (resp.user != null) {
-        print('success--------------->');
         return UserModel(id: resp.user!.id);
       }
 
       throw ServerException(message: "User is null");
     } on AuthApiException catch (error) {
-        print('success--------------->');
-      throw ServerException(message: error.toString());
+      throw ServerException(message: error.message);
     }
   }
 }

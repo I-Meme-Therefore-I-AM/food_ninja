@@ -20,10 +20,8 @@ class AuthRepositoryImpl implements AuthRepository {
       {required UserSignUpEntity user}) async {
     try {
       final userId = await authRemote.signUp(user);
-      print('success--------------->');
       return right(UserSignUpEntityResp(id: userId.id));
     } on ServerException catch (e) {
-      print(e.message);
       return left(Failure(e.message));
     }
   }
