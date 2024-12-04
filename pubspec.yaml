@@ -1,0 +1,81 @@
+name: food_ninja
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.16
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/vectors/
+    - assets/images/
+    - assets/fonts/
+  
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: BentonSans
+      fonts:
+        - asset: assets/fonts/BentonSans Black.otf
+        - asset: assets/fonts/BentonSans Bold.otf
+        - asset: assets/fonts/BentonSans Book.otf
+        - asset: assets/fonts/BentonSans Comp Black.otf
+        - asset: assets/fonts/BentonSans Comp Book.otf
+        - asset: assets/fonts/BentonSans Comp Light.otf
+        - asset: assets/fonts/BentonSans Comp Medium.otf
+        - asset: assets/fonts/BentonSans Comp Regular.otf
+        - asset: assets/fonts/BentonSans Cond Light.otf
+        - asset: assets/fonts/BentonSans Cond Bold.otf
+        - asset: assets/fonts/BentonSans Cond Medium.otf
+        - asset: assets/fonts/BentonSans Cond Regular.otf
+        - asset: assets/fonts/BentonSans ExtraComp Regular.otf
+        - asset: assets/fonts/BentonSans ExtraComp Black.otf
+        - asset: assets/fonts/BentonSans ExtraComp Bold.otf
+        - asset: assets/fonts/BentonSans ExtraComp Book.otf
+        - asset: assets/fonts/BentonSans ExtraComp Medium.otf
+        - asset: assets/fonts/BentonSans ExtraComp Regular.otf
+        - asset: assets/fonts/BentonSans ExtraLight.otf
+        - asset: assets/fonts/BentonSans Light.otf
+        - asset: assets/fonts/BentonSans Medium.otf
+        - asset: assets/fonts/BentonSans Regular.otf
+        - asset: assets/fonts/BentonSans Thin.otf
+          style: italic
+    - family: Viga
+      fonts:
+        - asset: assets/fonts/Viga-Regular.ttf
+    
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
+        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf  
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
