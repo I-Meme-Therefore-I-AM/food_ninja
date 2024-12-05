@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ninja/core/themes/app_themes.dart';
 import 'package:food_ninja/features/auth/sign_in_page.dart';
+import 'package:food_ninja/features/auth/sign_up_page.dart';
 import 'package:food_ninja/features/splash/second_splash_page.dart';
 import 'package:food_ninja/features/splash/third_splash_page.dart';
 import 'package:food_ninja/features/splash/welcome_page.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         "/second_splash_page": (context) => const SecondSplashPage(),
         "/third_splash_page": (context) => const ThirdSplashPage(),
         "/sign_in": (context) => const SignInPage(),
+        "/sign_up": (context) => const SignUpPage(),
       },
     );
   }

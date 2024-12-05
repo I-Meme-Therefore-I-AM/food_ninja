@@ -10,4 +10,9 @@ class AppVectors {
   // social auth icon
   static const facebook = '${basePath}facebook.$ext';
   static const google = "${basePath}google.$ext";
+
+  // sign up icons
+  static const profile = '${basePath}profile.$ext';
+  static const lock = '${basePath}lock.$ext';
+  static const message = '${basePath}message.$ext';
 }

@@ -10,7 +10,7 @@ class ThirdSplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void onPressed() {
-      Navigator.pushNamedAndRemoveUntil(context, "/sign_in", (_) => false);
+      Navigator.pushNamedAndRemoveUntil(context, "/sign_up", (_) => false);
     }
 
     return Scaffold(

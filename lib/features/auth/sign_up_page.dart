@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
 import 'package:food_ninja/core/images/app_vectors.dart';
 import 'package:food_ninja/core/themes/app_palette.dart';
 import 'package:food_ninja/core/widgets/form_field.dart';
 import 'package:food_ninja/core/widgets/gradient_button.dart';
 import 'package:food_ninja/core/widgets/gradient_text.dart';
-import 'package:food_ninja/features/auth/widgets/auth_container.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-final TextEditingController _emailController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
-
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -77,6 +76,10 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 25,
                   ),
+                  _usernameFormField(),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   _emailFormField(),
                   const SizedBox(
                     height: 10,
@@ -94,44 +97,27 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 15,
                   ),
-
-                  //TODO handle user social auth... login
-                  const Row(
-                    children: [
-                      AuthContainer(
-                        text: "Facebook",
-                        iconPath: AppVectors.facebook,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      AuthContainer(
-                        text: "Google",
-                        iconPath: AppVectors.google,
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-
-                  //TODO implement user forgot password route
-                  const GradientText(
-                      text: "Forgot Your Password?",
-                      size: 12,
-                      fontFamily: "BentonSans",
-                      fontWeight: FontWeight.w600),
-
-                  // TODO handle user login request to the app
                   const SizedBox(
                     height: 50,
                   ),
                   GradientButton(
-                      text: "Login",
+                      text: "Create Account",
                       onPressed: () {},
                       fontSize: 16,
                       height: 57,
                       width: 141),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamedAndRemoveUntil(
+                        context, "/sign_in", (_) => false),
+                    child: const GradientText(
+                        text: "already have an account?",
+                        size: 12,
+                        fontFamily: "BentonSans",
+                        fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
             )
@@ -145,6 +131,7 @@ class _SignInPageState extends State<SignInPage> {
     return CustomFormField(
       controller: _passwordController,
       hintText: "Email",
+      signUpIcons: SvgPicture.asset(AppVectors.message),
     );
   }
 
@@ -153,6 +140,15 @@ class _SignInPageState extends State<SignInPage> {
       controller: _emailController,
       hintText: "Password",
       isObtuseText: true,
+      signUpIcons: SvgPicture.asset(AppVectors.lock),
+    );
+  }
+
+  Widget _usernameFormField() {
+    return CustomFormField(
+      controller: _usernameController,
+      hintText: "Anamwp . . |",
+      signUpIcons: SvgPicture.asset(AppVectors.profile),
     );
   }
 }

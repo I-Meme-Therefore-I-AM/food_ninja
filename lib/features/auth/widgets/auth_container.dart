@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_ninja/core/themes/app_palette.dart';
-import 'package:food_ninja/core/widgets/gradient_text.dart';
 
 class AuthContainer extends StatelessWidget {
   final String text;

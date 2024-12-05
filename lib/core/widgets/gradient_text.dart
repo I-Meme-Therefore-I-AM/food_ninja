@@ -20,7 +20,7 @@ class GradientText extends StatelessWidget {
     const LinearGradient gradient = LinearGradient(colors: [
       AppPalette.headerTextgradientTop,
       AppPalette.headerTextgradientBelow
-    ], begin: Alignment.topRight, end: Alignment.bottomRight);
+    ], begin: Alignment.centerLeft, end: Alignment.topRight);
     return ShaderMask(
       shaderCallback: (bounds) =>
           gradient.createShader(const Rect.fromLTWH(10, 10, 10, 10)),
