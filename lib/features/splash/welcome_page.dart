@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
 import 'package:food_ninja/core/images/app_vectors.dart';
@@ -17,6 +18,13 @@ class _WelcomePageState extends State<WelcomePage> {
   void initState() {
     super.initState();
 
+    // ensure keypad is not shown
+    SystemChannels.textInput.invokeMethod("TextInput.hide");
+
+    // dismiss any open keyboard
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    });
     redirect();
   }
 

@@ -7,5 +7,8 @@ class AppThemes {
 
   static final darkTheme = ThemeData(
       scaffoldBackgroundColor: AppPalette.darkScaffoldBackGroundbottomGrad,
-      primaryColor: const Color(0xFFFFFFFF));
+      inputDecorationTheme: const InputDecorationTheme(
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+      ));
 }

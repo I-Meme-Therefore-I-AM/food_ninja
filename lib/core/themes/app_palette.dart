@@ -11,4 +11,8 @@ class AppPalette {
 
   // sub Text Color
   static const subTextColor = Color(0xffFFFFFF);
+
+  // button text gradient color
+  static const Color bottomButtonColor = Color(0xFF53E88B);
+  static const Color topButtonColor = Color(0xFF15BE77);
 }

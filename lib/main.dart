@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_ninja/core/themes/app_themes.dart';
+import 'package:food_ninja/features/auth/sign_in_page.dart';
 import 'package:food_ninja/features/splash/second_splash_page.dart';
+import 'package:food_ninja/features/splash/third_splash_page.dart';
 import 'package:food_ninja/features/splash/welcome_page.dart';
 
 void main() {
@@ -15,12 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
+      theme: AppThemes.darkTheme,
       home: const WelcomePage(),
       routes: {
         "/second_splash_page": (context) => const SecondSplashPage(),
+        "/third_splash_page": (context) => const ThirdSplashPage(),
+        "/sign_in": (context) => const SignInPage(),
       },
     );
   }

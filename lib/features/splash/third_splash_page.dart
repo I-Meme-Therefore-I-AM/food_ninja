@@ -4,45 +4,39 @@ import 'package:food_ninja/core/images/app_vectors.dart';
 import 'package:food_ninja/core/themes/app_palette.dart';
 import 'package:food_ninja/core/widgets/gradient_button.dart';
 
-class SecondSplashPage extends StatelessWidget {
-  const SecondSplashPage({super.key});
+class ThirdSplashPage extends StatelessWidget {
+  const ThirdSplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     void onPressed() {
-      Navigator.pushNamedAndRemoveUntil(
-          context, "/third_splash_page", (routes) => false);
+      Navigator.pushNamedAndRemoveUntil(context, "/sign_in", (_) => false);
     }
 
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(AppVectors.eateryBg),
-          const SizedBox(
-            height: 20,
-          ),
+          SvgPicture.asset(AppVectors.eateryBg_2),
           const Text(
-            "Find your  Comfort\nFood here",
+            "Food Ninja is Where Your\nComfort Food Lives",
             style: TextStyle(
-                color: AppPalette.subTextColor,
-                fontSize: 22,
-                fontWeight: FontWeight.w500),
+              fontSize: 22,
+              color: AppPalette.subTextColor,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 20,
           ),
           const Text(
-            "Here You Can find a chef or dish for every\ntaste and color. Enjoy!",
-            style: TextStyle(
-                fontSize: 13.5,
-                fontFamily: "BentonSans Book",
-                color: AppPalette.subTextColor),
+            "Enjoy a fast and smooth food delivery\nat your doorstep",
+            style: TextStyle(color: AppPalette.subTextColor),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 35,
+            height: 50,
           ),
           GradientButton(
               text: "Next",
