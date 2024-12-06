@@ -3,33 +3,33 @@ import 'dart:convert';
 
 class UserModel {
   final String uId;
-  final String phone;
+  final String phoneNumber;
   UserModel({
     required this.uId,
-    required this.phone,
+    required this.phoneNumber,
   });
 
   UserModel copyWith({
     String? uId,
-    String? phone,
+    String? phoneNumber,
   }) {
     return UserModel(
       uId: uId ?? this.uId,
-      phone: phone ?? '',
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'uId': uId,
-      'phone': phone,
+      'phoneNumber': phoneNumber,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       uId: map['uId'] as String,
-      phone: map['phone'] ?? '',
+      phoneNumber: map['phoneNumber'] ?? '',
     );
   }
 
@@ -39,7 +39,7 @@ class UserModel {
       UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'UserModel(uId: $uId, phone: $phone)';
+  String toString() => 'UserModel(uId: $uId, phoneNumber: $phoneNumber)';
 
   @override
   bool operator ==(covariant UserModel other) {
@@ -47,9 +47,9 @@ class UserModel {
   
     return 
       other.uId == uId &&
-      other.phone == phone;
+      other.phoneNumber == phoneNumber;
   }
 
   @override
-  int get hashCode => uId.hashCode ^ phone.hashCode;
+  int get hashCode => uId.hashCode ^ phoneNumber.hashCode;
 }

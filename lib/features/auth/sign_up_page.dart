@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
 import 'package:food_ninja/core/images/app_vectors.dart';
 import 'package:food_ninja/core/themes/app_palette.dart';
+import 'package:food_ninja/core/utils/current_user.dart';
+import 'package:food_ninja/core/utils/snackBar.dart';
 import 'package:food_ninja/core/widgets/form_field.dart';
 import 'package:food_ninja/core/widgets/gradient_button.dart';
 import 'package:food_ninja/core/widgets/gradient_text.dart';
@@ -41,12 +43,11 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     ref.listen(authViewModelProvider, (_, next) {
       next?.when(
         data: (data) {
+          ref.read(currentUserProvider.notifier).setUser(data);
           Navigator.pushNamed(context, "/complete_profile");
         },
         error: (error, st) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(error.toString())));
+          errorSnackBar(context, error.toString());
         },
         loading: () {},
       );
@@ -139,7 +140,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                             password: _passwordController.text);
                       }
                     },
-                    fontSize: 16,
                     height: 57,
                     width: 141,
                     child: isLoading == false

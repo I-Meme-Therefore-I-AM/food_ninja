@@ -4,14 +4,12 @@ import 'package:food_ninja/core/themes/app_palette.dart';
 class GradientButton extends StatelessWidget {
   final Function()? onPressed;
   final Widget child;
-  final double fontSize;
   final double height;
   final double width;
   const GradientButton(
       {super.key,
       required this.child,
       required this.onPressed,
-      required this.fontSize,
       required this.height,
       required this.width});
 

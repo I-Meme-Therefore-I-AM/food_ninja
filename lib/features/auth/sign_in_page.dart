@@ -127,7 +127,6 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   GradientButton(
                       onPressed: () {},
-                      fontSize: 16,
                       height: 57,
                       width: 141,
                       child: Text(

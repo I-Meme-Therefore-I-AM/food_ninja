@@ -3,14 +3,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'current_user.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CurrentUser extends _$CurrentUser {
   @override
   UserModel? build() {
     return null;
   }
 
-  void currentUser(UserModel user) {
+  void setUser(UserModel user) {
     state = user;
   }
 }

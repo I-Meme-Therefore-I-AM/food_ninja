@@ -40,7 +40,6 @@ class ThirdSplashPage extends StatelessWidget {
           ),
           GradientButton(
               onPressed: onPressed,
-              fontSize: 16,
               height: 57,
               width: 157,
               child: Text(

@@ -8,7 +8,7 @@ part 'auth_view_model.g.dart';
 
 @riverpod
 class AuthViewModel extends _$AuthViewModel {
-  late final AuthRepository _authRepository;
+  late AuthRepository _authRepository;
   @override
   AsyncValue<UserModel>? build() {
     _authRepository = ref.watch(authRepositoryProvider);
@@ -30,7 +30,7 @@ class AuthViewModel extends _$AuthViewModel {
   }
 
   AsyncValue<UserModel>? updateSignUpUserState(UserModel user) {
-    ref.read(currentUserProvider.notifier).currentUser(user);
+    ref.read(currentUserProvider.notifier).setUser(user);
     state = AsyncData(user);
     return state;
   }
