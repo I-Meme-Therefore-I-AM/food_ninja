@@ -1,5 +1,5 @@
+import 'package:food_ninja/core/utils/current_user.dart';
 import 'package:food_ninja/features/auth/model/user_model.dart';
-import 'package:food_ninja/features/auth/view_model.dart/auth_view_model.dart';
 import 'package:food_ninja/features/profile/repository/complete_profile_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -36,6 +36,8 @@ class ProfileViewModel extends _$ProfileViewModel {
   }
 
   AsyncValue<UserModel>? updateUserInstance(UserModel user) {
-    return ref.read(authViewModelProvider.notifier).updateSignUpUserState(user);
+    ref.read(currentUserProvider.notifier).setUser(user);
+    state = AsyncData(user);
+    return state;
   }
 }

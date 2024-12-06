@@ -7,7 +7,6 @@ import 'package:food_ninja/core/utils/current_user.dart';
 import 'package:food_ninja/core/utils/snackBar.dart';
 import 'package:food_ninja/core/widgets/form_field.dart';
 import 'package:food_ninja/core/widgets/gradient_button.dart';
-import 'package:food_ninja/features/auth/view_model.dart/auth_view_model.dart';
 import 'package:food_ninja/features/profile/utils/back_arrow.dart';
 import 'package:food_ninja/features/profile/view_model/profile_view_model.dart';
 
@@ -38,7 +37,7 @@ class _CompleteProfileState extends ConsumerState<CompleteProfile> {
   Widget build(BuildContext context) {
     final uObj = ref.watch(currentUserProvider);
 
-    ref.listen(authViewModelProvider, (_, next) {
+    ref.listen(profileViewModelProvider, (_, next) {
       next?.when(
           data: (data) {
             Navigator.pushNamed(context, "/payment");

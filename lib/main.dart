@@ -6,6 +6,7 @@ import 'package:food_ninja/features/auth/sign_in_page.dart';
 import 'package:food_ninja/features/auth/sign_up_page.dart';
 import 'package:food_ninja/features/profile/complete_profile.dart';
 import 'package:food_ninja/features/profile/payment_method.dart';
+import 'package:food_ninja/features/profile/upload_photo_page.dart';
 import 'package:food_ninja/features/splash/second_splash_page.dart';
 import 'package:food_ninja/features/splash/third_splash_page.dart';
 import 'package:food_ninja/features/splash/welcome_page.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         "/sign_up": (context) => SignUpPage(),
         "/complete_profile": (context) => CompleteProfile(),
         "/payment": (context) => PaymentMethod(),
+        "/upload_photo": (context) => UploadPhotoPage()
       },
     );
   }

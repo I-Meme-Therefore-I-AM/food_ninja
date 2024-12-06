@@ -18,4 +18,9 @@ class AppVectors {
 
   // top bg
   static const rightTopBg = '${basePath}right_topBg.$ext';
+
+  // payment Banner
+  static const visa = '${basePath}visa.$ext';
+  static const paypal = '${basePath}paypal.$ext';
+  static const payoneer = '${basePath}payoneer.$ext';
 }

@@ -36,9 +36,9 @@ class CompleteProfileRepository {
       if (resp.isEmpty) {
         throw ServerException();
       }
-
       print(resp);
-      return right(UserModel.fromMap({'uId':resp['id'], 'phoneNumber': resp['phone_number']}));
+      return right(UserModel.fromMap(
+          {'uId': resp['id'], 'phoneNumber': resp['phone_number']}));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
