@@ -1,4 +1,6 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
 import 'package:food_ninja/core/images/app_vectors.dart';
@@ -6,21 +8,49 @@ import 'package:food_ninja/core/themes/app_palette.dart';
 import 'package:food_ninja/core/widgets/form_field.dart';
 import 'package:food_ninja/core/widgets/gradient_button.dart';
 import 'package:food_ninja/core/widgets/gradient_text.dart';
+import 'package:food_ninja/features/auth/utils/check_box.dart';
+import 'package:food_ninja/features/auth/view_model.dart/auth_view_model.dart';
+import 'package:food_ninja/features/auth/widgets/custom_check_box.dart';
 
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends ConsumerState<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _usernameController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool isLoading = ref.watch(
+        authViewModelProvider.select((state) => state?.isLoading == true));
+
+    ref.listen(authViewModelProvider, (_, next) {
+      next?.when(
+        data: (data) {
+          Navigator.pushNamed(context, "/complete_profile");
+        },
+        error: (error, st) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text(error.toString())));
+        },
+        loading: () {},
+      );
+    });
     return Form(
       key: formKey,
       child: Scaffold(
@@ -61,13 +91,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: AppPalette.subTextColor),
                 )),
             Positioned(
-              top: 350,
+              top: 330,
               left: 30,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const Text(
-                    "Login To Your Account",
+                    "Sign Up For Free",
                     style: TextStyle(
                         color: AppPalette.subTextColor,
                         fontSize: 20,
@@ -98,14 +128,35 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 15,
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 90,
                   ),
                   GradientButton(
-                      text: "Create Account",
-                      onPressed: () {},
-                      fontSize: 16,
-                      height: 57,
-                      width: 141),
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        await ref.read(authViewModelProvider.notifier).signUp(
+                            userName: _usernameController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text);
+                      }
+                    },
+                    fontSize: 16,
+                    height: 57,
+                    width: 141,
+                    child: isLoading == false
+                        ? Text(
+                            "Create Account",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: AppPalette.subTextColor),
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 4,
+                              color: AppPalette.subTextColor,
+                            ),
+                          ),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -120,7 +171,52 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-            )
+            ),
+
+            // user bool check
+            //
+            Positioned(
+              top: 625,
+              left: 40,
+              child: Row(
+                children: [
+                  CustomCheckBox(
+                    onChecked: () =>
+                        ref.read(checkBoxProvider.notifier).toggleBox(),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Keep Me Signed In",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  )
+                ],
+              ),
+            ),
+
+            Positioned(
+              top: 655,
+              left: 40,
+              child: Row(
+                children: [
+                  CustomCheckBox(
+                    onChecked: () {
+                      ref.read(checkBoxProvider.notifier).toggleBox();
+                    },
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Email Me About Special Pricing",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -129,18 +225,34 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _emailFormField() {
     return CustomFormField(
-      controller: _passwordController,
+      controller: _emailController,
       hintText: "Email",
       signUpIcons: SvgPicture.asset(AppVectors.message),
+      validator: (value) {
+        if (!EmailValidator.validate(value!)) {
+          return "Invalid email address passed";
+        }
+
+        return null;
+      },
     );
   }
 
   Widget _passwordFormField() {
     return CustomFormField(
-      controller: _emailController,
+      controller: _passwordController,
       hintText: "Password",
       isObtuseText: true,
       signUpIcons: SvgPicture.asset(AppVectors.lock),
+      validator: (value) {
+        if (value!.trim().isEmpty) {
+          return "password field is empty";
+        }
+        if (value.length < 6) {
+          return "password is too short";
+        }
+        return null;
+      },
     );
   }
 
@@ -149,6 +261,16 @@ class _SignUpPageState extends State<SignUpPage> {
       controller: _usernameController,
       hintText: "Anamwp . . |",
       signUpIcons: SvgPicture.asset(AppVectors.profile),
+      validator: (value) {
+        if (value!.trim().isEmpty) {
+          return "username field cannot be empty";
+        }
+
+        if (value.length < 3) {
+          return "username is too short please make length > 3";
+        }
+        return null;
+      },
     );
   }
 }

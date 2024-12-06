@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_ninja/core/images/app_images.dart';
@@ -15,11 +16,9 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-final TextEditingController _emailController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
-
 class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,7 +61,7 @@ class _SignInPageState extends State<SignInPage> {
                       color: AppPalette.subTextColor),
                 )),
             Positioned(
-              top: 350,
+              top: 330,
               left: 30,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -127,11 +126,17 @@ class _SignInPageState extends State<SignInPage> {
                     height: 50,
                   ),
                   GradientButton(
-                      text: "Login",
                       onPressed: () {},
                       fontSize: 16,
                       height: 57,
-                      width: 141),
+                      width: 141,
+                      child: Text(
+                        "Sign in",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppPalette.subTextColor),
+                      )),
                 ],
               ),
             )
@@ -143,9 +148,14 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _emailFormField() {
     return CustomFormField(
-      controller: _passwordController,
-      hintText: "Email",
-    );
+        controller: _passwordController,
+        hintText: "Email",
+        validator: (value) {
+          if (!EmailValidator.validate(value!)) {
+            return "Invalid email address provided";
+          }
+          return null;
+        });
   }
 
   Widget _passwordFormField() {
@@ -153,6 +163,19 @@ class _SignInPageState extends State<SignInPage> {
       controller: _emailController,
       hintText: "Password",
       isObtuseText: true,
+      validator: (value) {
+        if (value!.trim().isEmpty) {
+          return "Password cannot be field empty";
+        }
+
+        if (value.length < 6) {
+          return "Password length needs to be less than 6";
+        }
+        return null;
+      },
     );
   }
 }
+
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();

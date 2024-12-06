@@ -15,4 +15,7 @@ class AppVectors {
   static const profile = '${basePath}profile.$ext';
   static const lock = '${basePath}lock.$ext';
   static const message = '${basePath}message.$ext';
+
+  // top bg
+  static const rightTopBg = '${basePath}right_topBg.$ext';
 }

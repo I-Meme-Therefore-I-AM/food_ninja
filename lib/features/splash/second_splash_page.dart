@@ -45,11 +45,17 @@ class SecondSplashPage extends StatelessWidget {
             height: 35,
           ),
           GradientButton(
-              text: "Next",
               onPressed: onPressed,
               fontSize: 16,
               height: 57,
-              width: 157),
+              width: 157,
+              child: Text(
+                "Next",
+                style: TextStyle(
+                    color: AppPalette.subTextColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
+              )),
         ],
       ),
     );

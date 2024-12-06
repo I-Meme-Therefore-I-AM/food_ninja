@@ -3,13 +3,13 @@ import 'package:food_ninja/core/themes/app_palette.dart';
 
 class GradientButton extends StatelessWidget {
   final Function()? onPressed;
-  final String text;
+  final Widget child;
   final double fontSize;
   final double height;
   final double width;
   const GradientButton(
       {super.key,
-      required this.text,
+      required this.child,
       required this.onPressed,
       required this.fontSize,
       required this.height,
@@ -41,13 +41,7 @@ class GradientButton extends StatelessWidget {
               shadowColor: Colors.transparent,
               surfaceTintColor: Colors.transparent,
               overlayColor: Colors.transparent),
-          child: Text(
-            text,
-            style: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: AppPalette.subTextColor),
-          ),
+          child: child,
         ),
       ),
     );
